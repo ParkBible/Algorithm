@@ -14,8 +14,11 @@ for i in range(10):
         temp.append(card_list[j])
 
     temp.reverse()
-    print(temp)
+
     for j in range(start-1, stop):
         card_list[j] = temp[j-start+1]
-    print(card_list)
+
     temp = []
+
+for i in card_list:
+    print(i, end=' ')
