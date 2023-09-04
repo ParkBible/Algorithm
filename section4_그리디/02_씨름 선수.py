@@ -18,7 +18,7 @@ count = num
 for i in range(num):
     for j in range(num):
         if (i != j and candidates[i][0] < candidates[j][0] and candidates[i][1] < candidates[j][1]):
-            count = count - 1
+            count -= 1
             break
 
 print(count)
@@ -34,6 +34,6 @@ print(count)
 # for height, weight in candidates:
 #     if weight > max_weight:
 #         max_weight = weight
-#         count = count + 1
+#         count += 1
 
 # print(count)
