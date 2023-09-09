@@ -1,4 +1,5 @@
 import sys
+from collections import deque
 sys.stdin = open("04_input.txt")
 
 # 유럽에서 가장 유명했던 유람선 타이타닉이 침몰하고 있습니다. 유람선에는 N명의 승객이 타고 
@@ -48,8 +49,11 @@ people = list(map(int, input().split()))
 # 모범답안 접근법
 # 사람들을 오름차순 정렬한 후, 가장 몸무게가 작은 사람 + 큰 사람을 더해서 안되면 큰 사람 혼자 태워보냄
 # 그 후 가장 몸무게가 작은 사람 + 그 다음으로 몸무게가 큰 사람을 더해서 된다면 둘다 태워보냄
+# 리스트 대신 deque를 사용하면 내부 연산이 좀더 효율적이다.
+# deque는 import해서 사용해야 하며, pop(0)을 했을 때 인덱스가 전부 밀리는 list와 달리 deque의 popleft(0)는 가리키는 포인터만 바뀌므로 효율적.
 
 people.sort()
+people = deque(people)
 result = 0
 
 while people:
@@ -60,7 +64,7 @@ while people:
         people.pop()
         result += 1
     else:
-        people.pop(0)
+        people.popleft()
         people.pop()
         result += 1
 
