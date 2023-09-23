@@ -1,6 +1,6 @@
 import sys
 from collections import deque
-# sys.stdin = open("05_input.txt")
+sys.stdin = open('05_input.txt')
 
 # 1부터 N까지의 모든 자연수로 구성된 길이 N의 수열이 주어집니다. 
 # 이 수열의 왼쪽 맨 끝 숫자 또는 오른쪽 맨 끝 숫자 중 하나를 가져와 나열하여 가장 긴 증가수열
@@ -49,3 +49,34 @@ for i in range(len(nums)):
 
 print(len(results))
 print("".join(results))
+
+
+# res_nums는 사실상 마지막 요소의 조회에만 필요하므로 굳이 리스트를 쓸 필요 없이 마지막 요소 하나만을 담은 last라는 변수 하나로 가능하다.
+
+# 모범답안 : 포인터 2개(왼쪽, 오른쪽)를 두고, 왼쪽을 택했다면 왼쪽 포인터를 한 칸 옮기고, 오른쪽을 택했을 땐 마찬가지로 작업.
+# tmp라는 리스트에 (값, "L or R") 을 넣고 정렬한 후 첫 번째 요소를 택하는 방법.
+
+# lt = 0
+# rt = length - 1
+# last = 0
+# res = ""
+# tmp = []
+
+# while lt <= rt:
+#     if nums[lt] > last:
+#         tmp.append((nums[lt], "L"))
+#     if nums[rt] > last:
+#         tmp.append((nums[rt], "R"))
+
+#     tmp.sort()    # 튜플의 첫 번째 요소를 기준으로 정렬
+
+#     if len(tmp) == 0:
+#         break
+#     else:
+#         res = res + tmp[0][1]
+#         last = tmp[0][0]
+#         if tmp[0][1] == "L":
+#             lt += 1
+#         else:
+#             rt -= 1
+#     tmp.clear()
