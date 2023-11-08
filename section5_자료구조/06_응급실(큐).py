@@ -46,17 +46,17 @@ while dq:
 # 모범답안
 # dq를 (인덱스, 값)의 튜플 형태로 만든다.
 
-dq = [(pos, val) for pos, val in enumerate(list(map(int, input().split())))]
-dq = deque(dq)
-cnt = 0
-while True:
-    cur = dq.popleft()
+# dq = [(pos, val) for pos, val in enumerate(list(map(int, input().split())))]
+# dq = deque(dq)
+# cnt = 0
+# while True:
+#     cur = dq.popleft()
     
-    if any(cur[1] < x[1] for x in dq):
-        dq.append(cur)
-    else:
-        cnt += 1
-        if cur[0] == m:
-            break
+#     if any(cur[1] < x[1] for x in dq):
+#         dq.append(cur)
+#     else:
+#         cnt += 1
+#         if cur[0] == m:
+#             break
 
-print(cnt)
+# print(cnt)
