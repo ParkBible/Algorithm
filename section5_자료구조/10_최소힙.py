@@ -1,6 +1,6 @@
 import sys
-sys.stdin = open("10_input.txt")
 import heapq as hq
+sys.stdin = open("10_input.txt")
 
 # 최소힙은 완전이진트리로 구현된 자료구조입니다. 그 구성은 부모 노드값이 왼쪽자식과 오른쪽 자식노드의 값보다
 # 작게 트리를 구성하는 것입니다. 그렇게 하면 트리의 루트(root)노드는 
@@ -17,3 +17,18 @@ import heapq as hq
 # 3) -1이 입력되면 프로그램 종료한다.
 
 # 첫 번째 줄부터 숫자가 입력된다. 입력되는 숫자는 100,000개 이하이며 각 숫자의 크기는 정수형 범위에 있다
+
+a = []
+
+while True:
+    n = int(input())
+
+    if n == -1:
+        break
+    if n == 0:
+        if len(a) == 0:
+            print(-1)
+        else:
+            print(hq.heappop(a))    # 루트 노드의 값을 pop시킴.
+    else:
+        hq.heappush(a, n)    # a라는 리스트에 n이라는 값을 push함.
