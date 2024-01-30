@@ -20,7 +20,7 @@ def DFS(L):
         print()
         cnt += 1
     else:
-        for i in range(1, n + 1):
+        for i in range(1, n + 1):   # 뿌리는 n개만큼 뻗어야 함
             ch[L] = i
             DFS(L + 1)
 
