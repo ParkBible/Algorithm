@@ -26,7 +26,8 @@ def DFS(L, sum, time):
 
 if __name__ == "__main__":
     n, m = map(int, input().split())
-    scores, times = []
+    scores = list()
+    times = list()
     res = -1
 
     for i in range(n):
