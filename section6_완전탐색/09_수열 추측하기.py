@@ -15,6 +15,13 @@ sys.stdin = open("09_input.txt")
 
 # 첫째 줄에 두개의 정수 N(1≤N≤10)과 F가 주어진다. N은 가장 윗줄에 있는 숫자의 개수를 의미하며 
 # F는 가장 밑에 줄에 있는 수로 1,000,000 이하이다.
+
+
+# 8번 문제(순열 구하기)에서부터 시작하여 문제 해결함.
+# 
+# 모든 경우의 순열에 대해 파스칼의 삼각형 계산 결과와 f가 일치하는지 확인함.
+# 파스칼의 삼각형 계산은 DFS2()에서 수행.
+
 triangle_res = 0
 
 def DFS(L):
@@ -35,7 +42,7 @@ def DFS(L):
 
 def DFS2(L, nums):
     global triangle_res
-    
+
     if len(nums) == 1:
         triangle_res = nums[0]
     else:
@@ -50,3 +57,36 @@ if __name__ == "__main__":
     res = [0] * n
     
     DFS(0)
+
+
+
+# 모범답안
+# 사실 파스칼의 삼각형의 꼭대기 계산에는 규칙이 있다.
+# 곱셈의 이항계수를 따름
+# 1 2 3 즉 n=3인 수열을 파스칼의 삼각형 계산한다고 하면
+# n=3일때 1x'1' + 2x'2' + 3x'1' = 6 이라는 것 (1 2 1)
+# n=4일때는 1 3 3 1, n=5일 땐 1 4 6 4 1 임
+# 이런 이항계수를 구하는 공식은 91번째 라인. 
+
+    
+def DFS(L, sum):
+    if L==n and sum==f:
+        for x in p:
+            print(x, end=' ')
+        sys.exit(0)
+    else:
+        for i in range(1, n+1):
+            if ch[i]==0:
+                ch[i]=1
+                p[L]=i
+                DFS(L+1, sum+(p[L]*b[L]))
+                ch[i]=0
+
+if __name__ == "__main__":
+    n, f=map(int, input().split())
+    p=[0]*n
+    b=[1]*n
+    ch=[0]*(n+1)
+    for i in range(1, n):
+        b[i]=b[i-1]*(n-i)//i
+    DFS(0, 0)
