@@ -24,16 +24,16 @@ def DFS(L):
         res.append(word)
         return
     else:
-        if int(nums[L]) != 0:
-            if L + 1 < len(nums):
-                if int(nums[L + 1]) != 0:
+        if int(nums[L]) != 0:    # 0일 때는 한자릿수에 대응하는 알파벳 불가능
+            if L + 1 < len(nums):    # 다음 숫자가 존재하고, 그 숫자가 0이 아니라면 한자릿수 알파벳 가능
+                if int(nums[L + 1]) != 0:    # 다음 숫자가 0이면 한자릿수 알파벳을 부여했을 때 0에서 끊기기 때문
                     add1Digit(L)
             else:
                 add1Digit(L)
 
         if L + 1 < len(nums) and (nums[L + 1] == 0 or int(nums[L] + nums[L + 1]) <= 26):
-            if L + 2 < len(nums):
-                if int(nums[L + 2]) != 0:
+            if L + 2 < len(nums):    # 다다음 숫자가 존재하고, 그 숫자가 0이 아니라면 두자릿수 알파벳 가능
+                if int(nums[L + 2]) != 0:    # 다다음 숫자가 0이면 두자릿수 알파벳을 부여했을 때 0에서 끊기기 때문
                     add2Digit(L)
             else:
                 add2Digit(L)
@@ -67,3 +67,31 @@ if __name__ == "__main__":
         print(r)
 
     print(len(res))
+
+
+# 모범답안
+
+def DFS(L, P):    # L은 숫자 길이, P는 단어 길이
+    global cnt
+    if L == n:
+        cnt += 1
+        for j in range(P):
+            print(chr(res[j], end = ""))
+        print()
+    else:
+        for i in range(1, 27):    # 알파벳 종류만큼 반복
+            if code[L] == i:
+                res[P] = i
+                DFS(L + 1, P + 1)
+            elif i >= 10 and code[L] == i // 10 and code[L + 1] == i % 10:    # 현재 자리가 십의 자리 숫자와 같고, 다음 자리가 일의 자리 숫자와 같을 때
+                res[P] = i
+                DFS(L + 2, P + 1)
+
+if __name__ == "__main__":
+    code = list(map(int, input()))
+    n = len(code)
+    code.insert(n, -1)    # 마지막에 -1을 삽입함(다음 인덱스 없을 때의 처리를 위한 것)
+    res = [0] * (n + 3)
+    cnt = 0
+    DFS(0, 0)
+    print(cnt)
