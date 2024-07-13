@@ -17,7 +17,6 @@ sys.stdin = open("08_input.txt")
 # 중심좌표를 처음에 큐에 넣어놓고 시작한다.
 # 상하좌우(4갈래)로 뻗는다.
 # 탐색한 곳은 체크를 한다.
-# 
 
 n = int(input())
 apples = list()
